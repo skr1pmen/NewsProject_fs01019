@@ -1,4 +1,5 @@
 <?php
+
 /** @var $content */
 ?>
 <!doctype html>
@@ -10,21 +11,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="/app/web/styles/style.css">
-    <link rel="stylesheet" href="/app/web/styles/admin.css">
     <link rel="stylesheet" href="/app/web/styles/user.css">
 
     <title><?= $this->title ?></title>
 </head>
 <body>
 <div class="container">
-    <header>
-        <a href="/" class="logo"><span>News</span>Portal</a>
-        <form action="" method="get">
-            <label><input type="search" name="search" placeholder="Поиск"></label>
-            <button type="submit" class="btn fas fa-search"></button>
-        </form>
-        <a href="/user/login" class="btn">Войти <i class="fas fa-arrow-right-to-bracket"></i></a>
-    </header>
     <?= $content ?>
 </div>
 </body>
