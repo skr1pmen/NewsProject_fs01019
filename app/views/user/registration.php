@@ -9,46 +9,7 @@
             </div>
 
             <!-- Форма регистрации -->
-            <form class="auth_form" action="/register" method="post" enctype="multipart/form-data">
-                <!-- Имя -->
-                <div class="form_group">
-                    <label for="first_name" class="form_label required">
-                        <i class="fas fa-user"></i>
-                        Имя
-                    </label>
-                    <div class="form_input_wrapper">
-                        <i class="fas fa-user form_input_icon"></i>
-                        <input
-                                type="text"
-                                id="first_name"
-                                name="first_name"
-                                class="form_input form_input--with_icon"
-                                placeholder="Введите ваше имя"
-                                required
-                                autofocus
-                        >
-                    </div>
-                </div>
-
-                <!-- Фамилия (опционально) -->
-                <div class="form_group">
-                    <label for="last_name" class="form_label">
-                        <i class="fas fa-user-tag"></i>
-                        Фамилия
-                        <span class="form_label_optional">(необязательно)</span>
-                    </label>
-                    <div class="form_input_wrapper">
-                        <i class="fas fa-user-tag form_input_icon"></i>
-                        <input
-                                type="text"
-                                id="last_name"
-                                name="last_name"
-                                class="form_input form_input--with_icon"
-                                placeholder="Введите вашу фамилию"
-                        >
-                    </div>
-                </div>
-
+            <form class="auth_form" method="post" enctype="multipart/form-data">
                 <!-- Логин -->
                 <div class="form_group">
                     <label for="login" class="form_label required">
@@ -114,29 +75,6 @@
                         <button type="button" class="password_toggle" onclick="toggleConfirmPassword()">
                             <i class="fas fa-eye" id="confirmPasswordIcon"></i>
                         </button>
-                    </div>
-                </div>
-
-                <!-- Аватарка (опционально) -->
-                <div class="form_group">
-                    <label for="avatar" class="form_label">
-                        <i class="fas fa-image"></i>
-                        Аватарка
-                        <span class="form_label_optional">(необязательно)</span>
-                    </label>
-                    <div class="form_file_upload avatar">
-                        <input
-                                type="file"
-                                id="avatar"
-                                name="avatar"
-                                class="form_file_input"
-                                accept="image/*"
-                        >
-                        <div class="form_file_avatar_preview" id="avatarPreview">
-                            <i class="fas fa-user-circle"></i>
-                            <span>Выберите аватарку</span>
-                            <small>PNG, JPG, WEBP до 2MB</small>
-                        </div>
                     </div>
                 </div>
 

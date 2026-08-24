@@ -26,4 +26,10 @@ class View
             echo "Вид не найден";
         }
     }
+
+    public function redirect($url)
+    {
+        header("Location:" . $url);
+        exit();
+    }
 }

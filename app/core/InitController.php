@@ -15,4 +15,9 @@ class InitController
     public function render($view, $params = []) {
         $this->view->render($view, $params);
     }
+
+    public function redirect($url)
+    {
+        $this->view->redirect($url);
+    }
 }
