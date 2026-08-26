@@ -1,4 +1,6 @@
 <?php
+/** @var string $error_message */
+
 ?>
 <div class="auth_page">
     <div class="auth_container">
@@ -85,9 +87,9 @@
                 </button>
 
                 <!-- Сообщение об ошибке -->
-                <div class="auth_error" id="authError" style="display: none;">
+                <div class="auth_error" id="authError" style="display: <?= !empty($error_message) ? 'block' : 'none' ?>">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span>Ошибка регистрации. Проверьте введённые данные.</span>
+                    <span><?= $error_message ?></span>
                 </div>
 
                 <!-- Вход -->

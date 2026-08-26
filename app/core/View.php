@@ -18,6 +18,7 @@ class View
         $path_view = 'app/views/' . $this->route['controller'] . '/' . $view . '.php';
 //        $path_view = "app/views/{$this->route['controller']}/{$view}.php";
         if (file_exists($path_view)) {
+            extract($params, EXTR_OVERWRITE);
             ob_start();
             require $path_view;
             $content = ob_get_clean();
