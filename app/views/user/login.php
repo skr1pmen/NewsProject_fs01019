@@ -1,4 +1,5 @@
 <?php
+/** @var string $error_message */
 ?>
 <div class="auth_page">
     <div class="auth_container">
@@ -63,9 +64,9 @@
                     Войти
                 </button>
 
-                <div class="auth_error" id="authError" style="display: none;">
+                <div class="auth_error" id="authError" style="display: <?= !empty($error_message) ? 'block' : 'none' ?>">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span>Неверный логин или пароль. Попробуйте снова.</span>
+                    <span><?= $error_message ?></span>
                 </div>
 
                 <div class="auth_footer">

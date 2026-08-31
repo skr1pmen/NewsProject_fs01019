@@ -9,8 +9,13 @@ class UserController extends InitController
 {
     public function actionProfile()
     {
-        echo "Страница пользователя";
-        var_dump($this->route);
+        $this->render('profile',
+        [
+            'user' => [
+                'login' => $_SESSION['user']['login'],
+                'is_admin' => $_SESSION['user']['is_admin'],
+            ]
+        ]);
     }
 
     public function actionRegistration()
@@ -46,6 +51,28 @@ class UserController extends InitController
         }
 
         $this->render('registration', [
+            'error_message' => $error_message
+        ]);
+    }
+
+    public function actionLogin() {
+        $this->view->title = "Авторизация";
+        $error_message = '';
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $login = !empty($_POST['login']) ? trim($_POST['login']) : null;
+            $password = !empty($_POST['password']) ? trim($_POST['password']) : null;
+
+            $userModel = new UserModel();
+            $result_auth = $userModel->authByLogin($login, $password);
+            if ($result_auth['result']) {
+                $this->redirect("/user/profile");
+            } else {
+                $error_message = $result_auth['error_message'];
+            }
+        }
+
+        $this->render('login', [
             'error_message' => $error_message
         ]);
     }

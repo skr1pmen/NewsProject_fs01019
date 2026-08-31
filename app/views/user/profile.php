@@ -1,4 +1,5 @@
 <?php
+/** @var array $user */
 ?>
 <main>
     <div class="container">
@@ -11,7 +12,7 @@
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="info">
-                        <h1 class="username">Логин пользователя</h1>
+                        <h1 class="username"><?= $user['login'] ?></h1>
                         <p class="role">Пользователь</p>
                     </div>
                 </div>
