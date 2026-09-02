@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\lib\UserOperation;
+
 class Router
 {
     protected $params = [];
@@ -9,6 +11,12 @@ class Router
     public function match() {
         $url = trim($_SERVER['REQUEST_URI'], '/');
         if (!empty($url)) {
+            if (strpos($url, '?') !== false) {
+                $link = explode('?', $url);
+                if (!empty($link[0])) {
+                    $url = $link[0];
+                }
+            }
             $params = explode('/', $url);
             if (!empty($params[0]) && !empty($params[1])) {
                 $this->params = [
@@ -35,7 +43,10 @@ class Router
                 $action = 'action' . ucfirst($this->params['action']);
                 if (method_exists($path_controller, $action)) {
                     $controller = new $path_controller($this->params);
-                    $controller->$action();
+                    $behaviors = $controller->behaviors();
+                    if ($this->checkBehaviors($behaviors)) {
+                        $controller->$action();
+                    }
                 } else {
                     echo "Action не найден: " . $action;
                 }
@@ -45,5 +56,26 @@ class Router
         } else {
             echo "Не найдено!";
         }
+    }
+
+    private function checkBehaviors($behaviors) {
+        if (empty($behaviors['access']['rules'])) {
+            return true;
+        }
+        foreach ($behaviors['access']['rules'] as $role) {
+            if (in_array($this->params['action'], $role['actions'])) {
+                if (in_array(UserOperation::getRoleUser(), $role['roles'])) {
+                    return true;
+                } else {
+                    if (isset($role['matchCallback'])) {
+                        call_user_func($role['matchCallback']);
+                    } else {
+                        echo "403";
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

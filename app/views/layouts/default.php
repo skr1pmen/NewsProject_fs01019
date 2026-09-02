@@ -23,7 +23,11 @@
             <label><input type="search" name="search" placeholder="Поиск"></label>
             <button type="submit" class="btn fas fa-search"></button>
         </form>
-        <a href="/user/login" class="btn">Войти <i class="fas fa-arrow-right-to-bracket"></i></a>
+        <?php if (!empty($_SESSION['user'])): ?>
+            <a href="/user/profile" class="btn"><?= $_SESSION['user']['login'] ?></a>
+        <?php else: ?>
+            <a href="/user/login" class="btn">Войти <i class="fas fa-arrow-right-to-bracket"></i></a>
+        <?php endif; ?>
     </header>
     <?= $content ?>
 </div>

@@ -1,6 +1,4 @@
 <?php
-/** @var array $news */
-
 ?>
 <main>
     <div class="container">
@@ -15,7 +13,7 @@
                 </p>
             </div>
 
-            <form class="form" action="/admin/edit?id=<?= $news['id'] ?>" method="post" enctype="multipart/form-data">
+            <form class="form" action="/admin/create" method="post" enctype="multipart/form-data">
                 <div class="form_group">
                     <label for="title" class="form_label required">
                         <i class="fas fa-heading"></i>
@@ -28,7 +26,6 @@
                             placeholder="Введите заголовок новости..."
                             required
                             maxlength="200"
-                            value="<?= $news['title'] ?>"
                     >
                     <span class="form_hint">Максимум 200 символов</span>
                 </div>
@@ -46,7 +43,7 @@
                             rows="2"
                             required
                             maxlength="300"
-                    ><?= $news['short_description'] ?></textarea>
+                    ></textarea>
                     <span class="form_hint">Максимум 300 символов</span>
                 </div>
 
@@ -63,7 +60,7 @@
                             rows="10"
                             required
                             minlength="100"
-                    ><?= $news['description'] ?></textarea>
+                    ></textarea>
                     <span class="form_hint">Минимум 100 символов</span>
                 </div>
 

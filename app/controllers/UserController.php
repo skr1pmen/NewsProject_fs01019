@@ -4,9 +4,33 @@ namespace app\controllers;
 
 use app\core\InitController;
 use app\models\UserModel;
+use app\lib\UserOperation;
 
 class UserController extends InitController
 {
+    public function behaviors() {
+        return [
+          'access' => [
+              'rules' => [
+                  [
+                      'actions' => ['login', 'registration'],
+                      'roles' => [UserOperation::RoleGuest],
+                      'matchCallback' => function () {
+                            $this->redirect('/user/profile');
+                      }
+                  ],
+                  [
+                      'actions' => ['profile', 'logout'],
+                      'roles' => [UserOperation::RoleUser, UserOperation::RoleAdmin],
+                      'matchCallback' => function () {
+                          $this->redirect('/user/login');
+                      }
+                  ],
+              ]
+          ]
+        ];
+    }
+
     public function actionProfile()
     {
         $this->render('profile',
@@ -75,5 +99,13 @@ class UserController extends InitController
         $this->render('login', [
             'error_message' => $error_message
         ]);
+    }
+
+    public function actionLogout() {
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
+
+        $this->redirect("/");
     }
 }

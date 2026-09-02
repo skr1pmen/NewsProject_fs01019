@@ -13,8 +13,9 @@
                     </div>
                     <div class="info">
                         <h1 class="username"><?= $user['login'] ?></h1>
-                        <p class="role">Пользователь</p>
+                        <p class="role"><?= $user['is_admin'] ? "Администратор" : "Пользователь" ?></p>
                     </div>
+                    <a href="/user/logout" class="btn">Выход</a>
                 </div>
             </div>
 
