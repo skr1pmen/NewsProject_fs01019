@@ -22,7 +22,7 @@
         </h2>
         <a href="/admin/create" class="btn">Создать новость</a>
     </div>
-
+    <?= !empty($_SESSION['error']) ? $_SESSION['error'] : ''  ?>
     <div class="admin_news_list">
         <?php foreach ($news as $newsItem): ?>
             <div class="admin_news_item">

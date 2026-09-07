@@ -59,7 +59,7 @@
                             placeholder="Введите полный текст новости..."
                             rows="10"
                             required
-                            minlength="100"
+                            minlength="10"
                     ></textarea>
                     <span class="form_hint">Минимум 100 символов</span>
                 </div>

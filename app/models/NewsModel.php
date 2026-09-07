@@ -94,4 +94,28 @@ class NewsModel extends BaseModel
             "error_message" => $error_message
         ];
     }
+
+    public function deleteNewsById($id) {
+        $result = false;
+        $error_message = "";
+
+        if ($this->getNewsById($id)) {
+            $isDelete = $this->delete(
+                "DELETE FROM news WHERE id = :id",
+                ["id" => $id]
+            );
+            if ($isDelete) {
+                $result = true;
+            } else {
+                $error_message .= "Не удалось удалить запись";
+            }
+        } else {
+            $error_message .= "Не удалось найти запись для удаления";
+        }
+
+        return [
+            "result" => $result,
+            "error_message" => $error_message
+        ];
+    }
 }

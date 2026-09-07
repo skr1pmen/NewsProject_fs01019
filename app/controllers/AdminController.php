@@ -30,7 +30,6 @@ class AdminController extends InitController
         $newsModel = new NewsModel();
         $news = $newsModel->list();
 
-
         $this->render('index', ['news' => $news]);
     }
 
@@ -93,5 +92,19 @@ class AdminController extends InitController
             'error_message' => $error_message,
             'news' => $news,
         ]);
+    }
+
+    public function actionDelete()
+    {
+        $newsId = !empty($_GET['id']) ? $_GET['id'] : null;
+
+        $newsModel = new NewsModel();
+        $result = $newsModel->deleteNewsById($newsId);
+
+        if (!$result['result']) {
+            $_SESSION['error'] = $result['error_message'];
+        }
+
+        $this->redirect("/admin/index");
     }
 }
